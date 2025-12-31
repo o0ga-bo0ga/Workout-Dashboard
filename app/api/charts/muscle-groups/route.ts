@@ -29,7 +29,7 @@ export async function GET(request: Request) {
   const classifyMuscleGroup = (exerciseName: string): string => {
     const name = exerciseName.toLowerCase();
     
-    if (name.includes('curl') || name.includes('tricep') || name.includes('bicep') || name.includes('arm')) {
+    if (name.includes('curl') || name.includes('tricep') || name.includes('bicep') || name.includes('arm') || name.includes('pushdown')) {
       return 'Arms';
     }
     if (name.includes('squat') || name.includes('leg') || name.includes('lunge') || name.includes('calf')) {
