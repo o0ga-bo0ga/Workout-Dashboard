@@ -36,7 +36,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
   // Handle description - could be string or object
   const renderDescription = () => {
     if (!workout.description) {
-      return <p className="text-gray-400">No description available</p>;
+      return <p className="text-gray-400">No exercises recorded</p>;
     }
 
     // If description is a string, display as-is
@@ -48,22 +48,65 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
       );
     }
 
-    // If description is an object (JSON with exercise names), display as list
+    // If description is an object (JSON with exercise names), display as beautiful cards
     try {
       const exercises = typeof workout.description === 'object' 
         ? workout.description 
         : JSON.parse(workout.description);
       
       return (
-        <div className="space-y-3">
-          {Object.entries(exercises).map(([exerciseName, details], index) => (
-            <div key={index} className="p-3 rounded-lg bg-gray-900/50">
-              <h5 className="font-semibold text-red-500 mb-1">{exerciseName}</h5>
-              <p className="text-sm text-gray-400">
-                {typeof details === 'string' ? details : JSON.stringify(details)}
-              </p>
-            </div>
-          ))}
+        <div className="space-y-4">
+          {Object.entries(exercises).map(([exerciseName, details]: [string, any], index) => {
+            // Parse the exercise details
+            let sets = [];
+            if (Array.isArray(details)) {
+              sets = details;
+            } else if (typeof details === 'object') {
+              // Handle object format
+              sets = Object.values(details);
+            }
+
+            return (
+              <div key={index} className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#2a2a2a] to-[#1f1f1f] p-5 border border-[#333333] hover:border-red-500/30 transition-all duration-300">
+                {/* Exercise Name */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500"></div>
+                  <h5 className="text-lg font-bold text-gray-100">{exerciseName}</h5>
+                </div>
+
+                {/* Sets Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                  {sets.map((set: any, setIndex: number) => {
+                    // Parse set data
+                    let reps = set.reps || set['reps"'] || 'N/A';
+                    let weight = set.weight_kg || set['weight_kg"'] || set.weight || 'N/A';
+                    
+                    return (
+                      <div key={setIndex} className="relative p-3 rounded-lg bg-[#1a1a1a]/50 border border-[#2a2a2a]">
+                        <div className="text-xs text-gray-500 mb-1">Set {setIndex + 1}</div>
+                        <div className="flex items-baseline gap-3">
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-2xl font-bold text-red-500">{reps}</span>
+                            <span className="text-xs text-gray-400">reps</span>
+                          </div>
+                          <div className="text-gray-600">×</div>
+                          <div className="flex items-baseline gap-1">
+                            <span className="text-2xl font-bold text-orange-500">{weight}</span>
+                            <span className="text-xs text-gray-400">kg</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Total Sets Badge */}
+                <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20">
+                  <span className="text-xs font-medium text-red-400">{sets.length} sets</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       );
     } catch (e) {
