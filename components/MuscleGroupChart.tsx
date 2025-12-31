@@ -102,7 +102,7 @@ export default function MuscleGroupChart() {
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
-                data={data}
+                data={data as any}
                 dataKey="volume"
                 nameKey="muscleGroup"
                 cx="50%"
