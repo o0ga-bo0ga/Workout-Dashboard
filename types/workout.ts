@@ -12,3 +12,9 @@ export interface WeeklyVolumeData {
   week: string;
   totalVolume: number;
 }
+
+export interface MuscleGroupData {
+  muscleGroup: string;
+  volume: number;
+  percentage: number;
+}

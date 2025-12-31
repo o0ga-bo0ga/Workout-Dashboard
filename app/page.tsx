@@ -99,9 +99,10 @@ export default function Home() {
 
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Left Column - Chart */}
+          {/* Left Column - Charts */}
           <div className="space-y-6">
             <WeeklyVolumeChart data={weeklyData} />
+            <MuscleGroupChart />
           </div>
 
           {/* Right Column - Date Selector & Workout Display */}
