@@ -16,7 +16,7 @@ export default function ErrorState({ message = 'Something went wrong', onRetry }
       {onRetry && (
         <button
           onClick={onRetry}
-          className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-medium transition-all duration-300 hover:scale-105"
+          className="px-6 py-3 rounded-lg bg-gradient-to-r from-red-600 to-orange-600 hover:from-purple-600 hover:to-blue-600 text-white font-medium transition-all duration-300 hover:scale-105"
         >
           Try Again
         </button>

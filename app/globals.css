@@ -3,8 +3,12 @@
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
-  --gradient-start: #1e1b4b;
-  --gradient-end: #0f172a;
+  --gradient-start: #1a0f0f;
+  --gradient-end: #0f0a0a;
+  --primary: #ef4444;
+  --primary-light: #f87171;
+  --secondary: #f97316;
+  --accent: #fb923c;
 }
 
 @theme inline {
@@ -51,10 +55,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.5);
+  background: rgba(239, 68, 68, 0.5);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.7);
+  background: rgba(239, 68, 68, 0.7);
 }
