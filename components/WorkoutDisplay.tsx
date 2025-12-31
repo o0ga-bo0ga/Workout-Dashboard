@@ -37,6 +37,48 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
     );
   }
 
+  // Handle description - could be string or object
+  const renderDescription = () => {
+    if (!workout.description) {
+      return <p className="text-gray-400">No description available</p>;
+    }
+
+    // If description is a string, display as-is
+    if (typeof workout.description === 'string') {
+      return (
+        <pre className="whitespace-pre-wrap text-gray-300 font-sans text-sm leading-relaxed">
+          {workout.description}
+        </pre>
+      );
+    }
+
+    // If description is an object (JSON with exercise names), display as list
+    try {
+      const exercises = typeof workout.description === 'object' 
+        ? workout.description 
+        : JSON.parse(workout.description);
+      
+      return (
+        <div className="space-y-3">
+          {Object.entries(exercises).map(([exerciseName, details], index) => (
+            <div key={index} className="p-3 rounded-lg bg-gray-900/50">
+              <h5 className="font-semibold text-purple-400 mb-1">{exerciseName}</h5>
+              <p className="text-sm text-gray-400">
+                {typeof details === 'string' ? details : JSON.stringify(details)}
+              </p>
+            </div>
+          ))}
+        </div>
+      );
+    } catch (e) {
+      return (
+        <pre className="whitespace-pre-wrap text-gray-300 font-sans text-sm leading-relaxed">
+          {JSON.stringify(workout.description, null, 2)}
+        </pre>
+      );
+    }
+  };
+
   return (
     <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-cyan-500/10 p-[1px] animate-fade-in">
       <div className="relative rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8">
@@ -75,12 +117,8 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
 
         {/* Description */}
         <div className="p-6 rounded-xl bg-gray-800/50">
-          <h4 className="text-lg font-semibold text-gray-200 mb-3">Workout Details</h4>
-          <div className="prose prose-invert prose-sm max-w-none">
-            <pre className="whitespace-pre-wrap text-gray-300 font-sans text-sm leading-relaxed">
-              {workout.description || 'No description available'}
-            </pre>
-          </div>
+          <h4 className="text-lg font-semibold text-gray-200 mb-3">Exercises</h4>
+          {renderDescription()}
         </div>
       </div>
     </div>
