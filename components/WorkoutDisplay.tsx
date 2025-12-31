@@ -98,17 +98,19 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
         </div>
 
         {/* Volume Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div className="p-4 rounded-xl bg-gradient-to-br from-red-600/10 to-orange-600/10">
-            <div className="flex items-center gap-2 mb-1">
-              <TrendingUp className="w-4 h-4 text-red-500" />
-              <p className="text-sm text-gray-400">Total Volume</p>
+        {!workout.is_rest_day && workout.total_volume != null && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="p-4 rounded-xl bg-gradient-to-br from-red-600/10 to-orange-600/10">
+              <div className="flex items-center gap-2 mb-1">
+                <TrendingUp className="w-4 h-4 text-red-500" />
+                <p className="text-sm text-gray-400">Total Volume</p>
+              </div>
+              <p className="text-3xl font-bold text-red-500">
+                {workout.total_volume.toLocaleString()}
+              </p>
             </div>
-            <p className="text-3xl font-bold text-red-500">
-              {workout.total_volume.toLocaleString()}
-            </p>
           </div>
-        </div>
+        )}
 
         {/* Description */}
         <div className="p-6 rounded-xl bg-[#2a2a2a]/50">
