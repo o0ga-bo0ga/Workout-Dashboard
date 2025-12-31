@@ -8,10 +8,11 @@ export async function GET(
   try {
     const { id } = await params;
     
+    // Use workout_date as the primary key (id param contains the date)
     const { data, error } = await supabase
       .from('workouts')
       .select('*')
-      .eq('id', id)
+      .eq('workout_date', id)
       .single();
 
     if (error) throw error;

@@ -13,7 +13,7 @@ export default function WorkoutList({ workouts, onSelectWorkout }: WorkoutListPr
     <div className="space-y-3">
       {workouts.map((workout, index) => (
         <div
-          key={workout.id ?? `workout-${index}`}
+          key={workout.workout_date}
           onClick={() => onSelectWorkout(workout)}
           className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-500/5 via-blue-500/5 to-cyan-500/5 p-[1px] cursor-pointer transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-purple-500/10"
         >
