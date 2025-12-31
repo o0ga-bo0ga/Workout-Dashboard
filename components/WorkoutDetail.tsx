@@ -16,7 +16,7 @@ export default function WorkoutDetail({ workout, onClose }: WorkoutDetailProps) 
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors"
+            className="absolute top-4 right-4 p-2 rounded-lg bg-[#2a2a2a]/50 hover:bg-gray-700/50 transition-colors"
           >
             <X className="w-5 h-5 text-gray-400" />
           </button>
@@ -24,7 +24,7 @@ export default function WorkoutDetail({ workout, onClose }: WorkoutDetailProps) 
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center gap-3 mb-2">
-              <div className={`p-3 rounded-xl ${workout.is_rest_day ? 'bg-gray-800/50' : 'bg-gradient-to-br from-red-500/20 to-orange-500/20'}`}>
+              <div className={`p-3 rounded-xl ${workout.is_rest_day ? 'bg-[#2a2a2a]/50' : 'bg-gradient-to-br from-red-500/20 to-orange-500/20'}`}>
                 {workout.is_rest_day ? (
                   <Calendar className="w-6 h-6 text-gray-400" />
                 ) : (
@@ -73,7 +73,7 @@ export default function WorkoutDetail({ workout, onClose }: WorkoutDetailProps) 
           )}
 
           {/* Description */}
-          <div className="p-4 rounded-xl bg-gray-800/50">
+          <div className="p-4 rounded-xl bg-[#2a2a2a]/50">
             <h3 className="text-lg font-semibold text-gray-200 mb-3">Exercise Summary</h3>
             <div className="prose prose-invert prose-sm max-w-none">
               <pre className="whitespace-pre-wrap text-gray-300 font-sans">

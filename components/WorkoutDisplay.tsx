@@ -11,7 +11,7 @@ interface WorkoutDisplayProps {
 export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayProps) {
   if (isLoading) {
     return (
-      <div className="relative overflow-hidden rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8 border border-gray-800 animate-pulse">
+      <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]/90 backdrop-blur-xl p-8 border border-[#333333] animate-pulse">
         <div className="h-64 flex items-center justify-center">
           <p className="text-gray-400">Loading...</p>
         </div>
@@ -21,9 +21,9 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
 
   if (!workout) {
     return (
-      <div className="relative overflow-hidden rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8 border border-gray-800 animate-fade-in">
+      <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]/90 backdrop-blur-xl p-8 border border-[#333333] animate-fade-in">
         <div className="flex flex-col items-center justify-center py-12">
-          <div className="p-4 rounded-full bg-gray-800/50 mb-4">
+          <div className="p-4 rounded-full bg-[#2a2a2a]/50 mb-4">
             <Calendar className="w-12 h-12 text-gray-500" />
           </div>
           <h3 className="text-2xl font-bold text-gray-300 mb-2">Rest Day</h3>
@@ -76,7 +76,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
   };
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8 border border-gray-800 animate-fade-in">
+    <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]/90 backdrop-blur-xl p-8 border border-[#333333] animate-fade-in">
         {/* Header */}
         <div className="flex items-center gap-4 mb-6">
           <div className="p-3 rounded-xl bg-gradient-to-br from-red-600/20 to-orange-600/20">
@@ -111,7 +111,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
         </div>
 
         {/* Description */}
-        <div className="p-6 rounded-xl bg-gray-800/50">
+        <div className="p-6 rounded-xl bg-[#2a2a2a]/50">
           <h4 className="text-lg font-semibold text-gray-200 mb-3">Exercises</h4>
           {renderDescription()}
         </div>
