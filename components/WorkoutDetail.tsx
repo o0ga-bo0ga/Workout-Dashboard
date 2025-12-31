@@ -24,7 +24,7 @@ export default function WorkoutDetail({ workout, onClose }: WorkoutDetailProps) 
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center gap-3 mb-2">
-              <div className={`p-3 rounded-xl ${workout.is_rest_day ? 'bg-[#2a2a2a]/50' : 'bg-gradient-to-br from-red-500/20 to-orange-500/20'}`}>
+              <div className={`p-3 rounded-xl ${workout.is_rest_day ? 'bg-[#2a2a2a]/50' : 'bg-gradient-to-br from-cyan-400/20 to-orange-500/20'}`}>
                 {workout.is_rest_day ? (
                   <Calendar className="w-6 h-6 text-gray-400" />
                 ) : (

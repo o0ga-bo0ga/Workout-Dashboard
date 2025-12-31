@@ -67,10 +67,10 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
             }
 
             return (
-              <div key={index} className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#2a2a2a] to-[#1f1f1f] p-5 border border-[#333333] hover:border-red-500/30 transition-all duration-300">
+              <div key={index} className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#2a2a2a] to-[#1f1f1f] p-5 border border-[#333333] hover:border-cyan-400/30 transition-all duration-300">
                 {/* Exercise Name */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                  <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
                   <h5 className="text-lg font-bold text-gray-100">{exerciseName}</h5>
                 </div>
 
@@ -86,12 +86,12 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
                         <div className="text-xs text-gray-500 mb-1">Set {setIndex + 1}</div>
                         <div className="flex items-baseline gap-3">
                           <div className="flex items-baseline gap-1">
-                            <span className="text-2xl font-bold text-red-500">{reps}</span>
+                            <span className="text-2xl font-bold text-cyan-400">{reps}</span>
                             <span className="text-xs text-gray-400">reps</span>
                           </div>
                           <div className="text-gray-600">×</div>
                           <div className="flex items-baseline gap-1">
-                            <span className="text-2xl font-bold text-gray-100">{weight}</span>
+                            <span className="text-2xl font-bold text-gray-300">{weight}</span>
                             <span className="text-xs text-gray-400">kg</span>
                           </div>
                         </div>
@@ -101,7 +101,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
                 </div>
 
                 {/* Total Sets Badge */}
-                <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20">
+                <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20">
                   <span className="text-xs font-medium text-red-400">{sets.length} sets</span>
                 </div>
               </div>
@@ -123,10 +123,10 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
         {/* Header */}
         <div className="flex items-center gap-4 mb-6">
           <div className="p-3 rounded-xl bg-gradient-to-br from-red-600/20 to-orange-600/20">
-            <Dumbbell className="w-8 h-8 text-red-500" />
+            <Dumbbell className="w-8 h-8 text-cyan-400" />
           </div>
           <div>
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-orange-500 bg-clip-text text-transparent">
               {workout.title}
             </h3>
             <p className="text-gray-400">
@@ -144,10 +144,10 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div className="p-4 rounded-xl bg-gradient-to-br from-red-600/10 to-orange-600/10">
             <div className="flex items-center gap-2 mb-1">
-              <TrendingUp className="w-4 h-4 text-red-500" />
+              <TrendingUp className="w-4 h-4 text-cyan-400" />
               <p className="text-sm text-gray-400">Total Volume</p>
             </div>
-            <p className="text-3xl font-bold text-red-500">
+            <p className="text-3xl font-bold text-cyan-400">
               {workout.total_volume.toLocaleString()}
             </p>
           </div>

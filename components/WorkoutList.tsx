@@ -22,7 +22,7 @@ export default function WorkoutList({ workouts, onSelectWorkout }: WorkoutListPr
             
             <div className="relative z-10 flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className={`p-2 rounded-lg ${workout.is_rest_day ? 'bg-gray-700/50' : 'bg-gradient-to-br from-red-500/20 to-orange-500/20'}`}>
+                <div className={`p-2 rounded-lg ${workout.is_rest_day ? 'bg-gray-700/50' : 'bg-gradient-to-br from-cyan-400/20 to-orange-500/20'}`}>
                   {workout.is_rest_day ? (
                     <Calendar className="w-5 h-5 text-gray-400" />
                   ) : (

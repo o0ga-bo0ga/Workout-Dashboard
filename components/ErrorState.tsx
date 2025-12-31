@@ -8,7 +8,7 @@ interface ErrorStateProps {
 export default function ErrorState({ message = 'Something went wrong', onRetry }: ErrorStateProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
-      <div className="p-4 rounded-full bg-red-500/10 mb-4">
+      <div className="p-4 rounded-full bg-cyan-400/10 mb-4">
         <AlertCircle className="w-12 h-12 text-red-400" />
       </div>
       <h3 className="text-xl font-semibold text-gray-200 mb-2">Error</h3>

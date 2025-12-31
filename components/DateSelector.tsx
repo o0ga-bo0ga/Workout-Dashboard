@@ -12,7 +12,7 @@ export default function DateSelector({ selectedDate, onDateChange }: DateSelecto
     <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]/90 backdrop-blur-xl p-6 border border-[#333333] animate-fade-in">
       <div className="flex items-center gap-4">
         <div className="p-3 rounded-xl bg-gradient-to-br from-red-600/20 to-orange-600/20">
-          <Calendar className="w-6 h-6 text-red-500" />
+          <Calendar className="w-6 h-6 text-cyan-400" />
         </div>
         <div className="flex-1">
           <label htmlFor="workout-date" className="block text-sm font-medium text-gray-400 mb-2">
@@ -23,7 +23,7 @@ export default function DateSelector({ selectedDate, onDateChange }: DateSelecto
             type="date"
             value={selectedDate}
             onChange={(e) => onDateChange(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a]/50 border border-red-600/30 text-gray-100 focus:outline-none focus:ring-2 focus:ring-red-600/50 focus:border-transparent transition-all"
+            className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a]/50 border border-cyan-500/30 text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-transparent transition-all"
           />
         </div>
       </div>

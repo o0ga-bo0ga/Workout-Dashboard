@@ -10,7 +10,7 @@ interface WeeklyVolumeChartProps {
 export default function WeeklyVolumeChart({ data }: WeeklyVolumeChartProps) {
   return (
     <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]/90 backdrop-blur-xl p-6 border border-[#333333] animate-slide-up">
-      <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
+      <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-cyan-500 bg-clip-text text-transparent">
           Weekly Volume Trend
         </h2>
         <div className="w-full h-[400px]">
@@ -18,8 +18,8 @@ export default function WeeklyVolumeChart({ data }: WeeklyVolumeChartProps) {
             <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
               <defs>
                 <linearGradient id="volumeGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#f97316" stopOpacity={0.1}/>
+                  <stop offset="5%" stopColor="#22d3ee" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="#06b6d4" stopOpacity={0.1}/>
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#374151" opacity={0.3} />
@@ -46,11 +46,11 @@ export default function WeeklyVolumeChart({ data }: WeeklyVolumeChartProps) {
               <Line 
                 type="monotone" 
                 dataKey="totalVolume" 
-                stroke="#ef4444" 
+                stroke="#22d3ee" 
                 strokeWidth={3}
                 fill="url(#volumeGradient)"
-                dot={{ fill: '#ef4444', strokeWidth: 2, r: 5 }}
-                activeDot={{ r: 7, fill: '#f87171' }}
+                dot={{ fill: '#22d3ee', strokeWidth: 2, r: 5 }}
+                activeDot={{ r: 7, fill: '#06b6d4' }}
               />
             </LineChart>
           </ResponsiveContainer>
