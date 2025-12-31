@@ -86,9 +86,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen p-6 md:p-10 flex items-center justify-center">
-      <div className="w-full max-w-5xl mx-auto space-y-8">
+      <div className="w-full max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
+        <div className="text-center mb-8 animate-fade-in">
           <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-orange-500 to-orange-400 bg-clip-text text-transparent">
             Workout Analytics
           </h1>
@@ -97,20 +97,25 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Weekly Volume Chart */}
-        <WeeklyVolumeChart data={weeklyData} />
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left Column - Chart */}
+          <div className="space-y-6">
+            <WeeklyVolumeChart data={weeklyData} />
+          </div>
 
-        {/* Date Selector */}
-        <DateSelector 
-          selectedDate={selectedDate}
-          onDateChange={setSelectedDate}
-        />
-
-        {/* Workout Display */}
-        <WorkoutDisplay 
-          workout={selectedWorkout}
-          isLoading={workoutLoading}
-        />
+          {/* Right Column - Date Selector & Workout Display */}
+          <div className="space-y-6">
+            <DateSelector 
+              selectedDate={selectedDate}
+              onDateChange={setSelectedDate}
+            />
+            <WorkoutDisplay 
+              workout={selectedWorkout}
+              isLoading={workoutLoading}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
