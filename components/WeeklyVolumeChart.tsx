@@ -9,9 +9,8 @@ interface WeeklyVolumeChartProps {
 
 export default function WeeklyVolumeChart({ data }: WeeklyVolumeChartProps) {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-600/10 via-orange-600/10 to-orange-500/10 p-[1px] animate-slide-up">
-      <div className="relative h-full rounded-2xl bg-gray-900/90 backdrop-blur-xl p-6">
-        <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+    <div className="relative overflow-hidden rounded-2xl bg-gray-900/90 backdrop-blur-xl p-6 border border-gray-800 animate-slide-up">
+      <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
           Weekly Volume Trend
         </h2>
         <div className="w-full h-[400px]">
@@ -57,6 +56,5 @@ export default function WeeklyVolumeChart({ data }: WeeklyVolumeChartProps) {
           </ResponsiveContainer>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }

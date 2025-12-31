@@ -11,11 +11,9 @@ interface WorkoutDisplayProps {
 export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayProps) {
   if (isLoading) {
     return (
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-600/10 via-orange-600/10 to-orange-500/10 p-[1px] animate-pulse">
-        <div className="relative rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8">
-          <div className="h-64 flex items-center justify-center">
-            <p className="text-gray-400">Loading...</p>
-          </div>
+      <div className="relative overflow-hidden rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8 border border-gray-800 animate-pulse">
+        <div className="h-64 flex items-center justify-center">
+          <p className="text-gray-400">Loading...</p>
         </div>
       </div>
     );
@@ -23,15 +21,13 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
 
   if (!workout) {
     return (
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-500/10 via-gray-600/10 to-gray-700/10 p-[1px] animate-fade-in">
-        <div className="relative rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8">
-          <div className="flex flex-col items-center justify-center py-12">
-            <div className="p-4 rounded-full bg-gray-800/50 mb-4">
-              <Calendar className="w-12 h-12 text-gray-500" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-300 mb-2">Rest Day</h3>
-            <p className="text-gray-500">No workout scheduled for this date</p>
+      <div className="relative overflow-hidden rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8 border border-gray-800 animate-fade-in">
+        <div className="flex flex-col items-center justify-center py-12">
+          <div className="p-4 rounded-full bg-gray-800/50 mb-4">
+            <Calendar className="w-12 h-12 text-gray-500" />
           </div>
+          <h3 className="text-2xl font-bold text-gray-300 mb-2">Rest Day</h3>
+          <p className="text-gray-500">No workout scheduled for this date</p>
         </div>
       </div>
     );
@@ -80,8 +76,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
   };
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-600/10 via-orange-600/10 to-orange-500/10 p-[1px] animate-fade-in">
-      <div className="relative rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8">
+    <div className="relative overflow-hidden rounded-2xl bg-gray-900/90 backdrop-blur-xl p-8 border border-gray-800 animate-fade-in">
         {/* Header */}
         <div className="flex items-center gap-4 mb-6">
           <div className="p-3 rounded-xl bg-gradient-to-br from-red-600/20 to-orange-600/20">
@@ -121,6 +116,5 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
           {renderDescription()}
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
