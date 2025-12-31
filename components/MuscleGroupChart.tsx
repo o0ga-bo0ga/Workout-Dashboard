@@ -12,6 +12,12 @@ const COLORS = [
   '#0e7490', // cyan-700
   '#155e75', // cyan-800
   '#164e63', // cyan-900
+  '#67e8f9', // cyan-300
+  '#a5f3fc', // cyan-200
+  '#0284c7', // sky-600
+  '#0369a1', // sky-700
+  '#075985', // sky-800
+  '#0c4a6e', // sky-900
 ];
 
 export default function MuscleGroupChart() {

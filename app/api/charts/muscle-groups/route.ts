@@ -25,40 +25,115 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  // Function to classify exercise into muscle group
+  // Comprehensive exercise-to-muscle-group mapping based on Lyfta categorization
   const classifyMuscleGroup = (exerciseName: string): string => {
     const name = exerciseName.toLowerCase();
     
-    if (name.includes('curl') || name.includes('tricep') || name.includes('bicep') || name.includes('arm') || name.includes('pushdown')) {
-      return 'Arms';
-    }
-    if (name.includes('squat') || name.includes('leg') || name.includes('lunge') || name.includes('calf')) {
-      return 'Legs';
-    }
-    if (name.includes('bench') || name.includes('chest') || name.includes('press') || name.includes('fly')) {
+    // Chest exercises
+    if (name.includes('bench press') || name.includes('bench') || name.includes('chest press') ||
+        name.includes('chest fly') || name.includes('pec deck') || name.includes('cable crossover') ||
+        name.includes('incline press') || name.includes('decline press') || name.includes('push up') ||
+        name.includes('pushup') || name.includes('chest dip')) {
       return 'Chest';
     }
-    if (name.includes('row') || name.includes('pull') || name.includes('lat') || name.includes('deadlift')) {
+    
+    // Back exercises
+    if (name.includes('deadlift') || name.includes('row') || name.includes('pull up') ||
+        name.includes('pullup') || name.includes('chin up') || name.includes('lat pulldown') ||
+        name.includes('lat pull') || name.includes('t-bar') || name.includes('face pull') ||
+        name.includes('shrug') || name.includes('hyperextension')) {
       return 'Back';
     }
-    if (name.includes('shoulder') || name.includes('raise') || name.includes('lateral') || name.includes('overhead')) {
+    
+    // Shoulders exercises
+    if (name.includes('shoulder press') || name.includes('military press') || 
+        name.includes('overhead press') || name.includes('arnold press') ||
+        name.includes('lateral raise') || name.includes('front raise') || 
+        name.includes('rear delt') || name.includes('upright row')) {
       return 'Shoulders';
     }
-    if (name.includes('crunch') || name.includes('plank') || name.includes('ab') || name.includes('core')) {
+    
+    // Biceps exercises
+    if (name.includes('bicep curl') || name.includes('biceps curl') || 
+        name.includes('barbell curl') || name.includes('dumbbell curl') ||
+        name.includes('hammer curl') || name.includes('preacher curl') ||
+        name.includes('concentration curl') || name.includes('cable curl')) {
+      return 'Biceps';
+    }
+    
+    // Triceps exercises
+    if (name.includes('tricep') || name.includes('skull crusher') ||
+        name.includes('close grip') || name.includes('close-grip') ||
+        name.includes('pushdown') || name.includes('overhead extension') ||
+        name.includes('tricep dip')) {
+      return 'Triceps';
+    }
+    
+    // Forearms exercises
+    if (name.includes('wrist curl') || name.includes('reverse curl') ||
+        name.includes('farmer') || name.includes('grip')) {
+      return 'Forearms';
+    }
+    
+    // Quadriceps exercises
+    if (name.includes('squat') || name.includes('leg press') ||
+        name.includes('leg extension') || name.includes('lunge') ||
+        name.includes('bulgarian split')) {
+      return 'Quadriceps';
+    }
+    
+    // Hamstrings exercises
+    if (name.includes('leg curl') || name.includes('romanian deadlift') ||
+        name.includes('rdl') || name.includes('good morning') ||
+        name.includes('nordic curl')) {
+      return 'Hamstrings';
+    }
+    
+    // Calves exercises
+    if (name.includes('calf raise') || name.includes('calf') ||
+        name.includes('donkey calf')) {
+      return 'Calves';
+    }
+    
+    // Glutes exercises
+    if (name.includes('hip thrust') || name.includes('glute bridge') ||
+        name.includes('kickback') || name.includes('sumo deadlift') ||
+        name.includes('glute')) {
+      return 'Glutes';
+    }
+    
+    // Abs/Core exercises
+    if (name.includes('crunch') || name.includes('sit-up') || name.includes('sit up') ||
+        name.includes('plank') || name.includes('ab wheel') || name.includes('leg raise') ||
+        name.includes('russian twist') || name.includes('cable crunch') ||
+        name.includes('core') || name.match(/\babs?\b/)) {
       return 'Abs';
+    }
+    
+    // Cardio exercises
+    if (name.includes('run') || name.includes('cycle') || name.includes('bike') ||
+        name.includes('row machine') || name.includes('elliptical') ||
+        name.includes('jump rope') || name.includes('cardio')) {
+      return 'Cardio';
     }
     
     return 'Other';
   };
 
-  // Aggregate volume by muscle group
+  // Aggregate volume by muscle group (using all Lyfta categories)
   const muscleGroupVolumes: { [key: string]: number } = {
-    'Arms': 0,
-    'Legs': 0,
     'Chest': 0,
     'Back': 0,
     'Shoulders': 0,
+    'Biceps': 0,
+    'Triceps': 0,
+    'Forearms': 0,
+    'Quadriceps': 0,
+    'Hamstrings': 0,
+    'Calves': 0,
+    'Glutes': 0,
     'Abs': 0,
+    'Cardio': 0,
   };
 
   (data || []).forEach((workout: any) => {
