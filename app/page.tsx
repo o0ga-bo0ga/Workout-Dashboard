@@ -92,7 +92,7 @@ export default function Home() {
           <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-orange-500 to-orange-400 bg-clip-text text-transparent">
             Workout Analytics
           </h1>
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-600 text-lg">
             Track your training volume and progress
           </p>
         </div>

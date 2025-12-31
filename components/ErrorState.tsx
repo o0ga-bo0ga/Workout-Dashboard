@@ -11,8 +11,8 @@ export default function ErrorState({ message = 'Something went wrong', onRetry }
       <div className="p-4 rounded-full bg-red-500/10 mb-4">
         <AlertCircle className="w-12 h-12 text-red-400" />
       </div>
-      <h3 className="text-xl font-semibold text-gray-200 mb-2">Error</h3>
-      <p className="text-gray-400 mb-6">{message}</p>
+      <h3 className="text-xl font-semibold text-gray-800 mb-2">Error</h3>
+      <p className="text-gray-600 mb-6">{message}</p>
       {onRetry && (
         <button
           onClick={onRetry}
