@@ -11,7 +11,7 @@ interface WorkoutDetailProps {
 export default function WorkoutDetail({ workout, onClose }: WorkoutDetailProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-cyan-500/10 p-[1px] animate-slide-up">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-gradient-to-br from-gray-800/50 via-gray-800/50 to-gray-800/50 p-[1px] animate-slide-up">
         <div className="relative rounded-2xl bg-gray-900 p-6">
           {/* Close button */}
           <button
@@ -24,7 +24,7 @@ export default function WorkoutDetail({ workout, onClose }: WorkoutDetailProps) 
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center gap-3 mb-2">
-              <div className={`p-3 rounded-xl ${workout.is_rest_day ? 'bg-gray-800/50' : 'bg-gradient-to-br from-purple-500/20 to-blue-500/20'}`}>
+              <div className={`p-3 rounded-xl ${workout.is_rest_day ? 'bg-gray-800/50' : 'bg-gradient-to-br from-red-500/20 to-orange-500/20'}`}>
                 {workout.is_rest_day ? (
                   <Calendar className="w-6 h-6 text-gray-400" />
                 ) : (
@@ -50,7 +50,7 @@ export default function WorkoutDetail({ workout, onClose }: WorkoutDetailProps) 
           {/* Stats */}
           {!workout.is_rest_day && (
             <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="p-4 rounded-xl bg-gradient-to-br from-purple-500/10 to-blue-500/10">
+              <div className="p-4 rounded-xl bg-gradient-to-br from-gray-800/50 to-blue-500/10">
                 <div className="flex items-center gap-2 mb-1">
                   <TrendingUp className="w-4 h-4 text-purple-400" />
                   <p className="text-sm text-gray-400">Total Volume</p>
@@ -60,7 +60,7 @@ export default function WorkoutDetail({ workout, onClose }: WorkoutDetailProps) 
                 </p>
               </div>
               
-              <div className="p-4 rounded-xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10">
+              <div className="p-4 rounded-xl bg-gradient-to-br from-gray-800/50 to-gray-800/50">
                 <div className="flex items-center gap-2 mb-1">
                   <Calendar className="w-4 h-4 text-blue-400" />
                   <p className="text-sm text-gray-400">Workout ID</p>
