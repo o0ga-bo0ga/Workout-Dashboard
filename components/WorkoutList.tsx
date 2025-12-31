@@ -11,9 +11,9 @@ interface WorkoutListProps {
 export default function WorkoutList({ workouts, onSelectWorkout }: WorkoutListProps) {
   return (
     <div className="space-y-3">
-      {workouts.map((workout) => (
+      {workouts.map((workout, index) => (
         <div
-          key={workout.id}
+          key={workout.id ?? `workout-${index}`}
           onClick={() => onSelectWorkout(workout)}
           className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-purple-500/5 via-blue-500/5 to-cyan-500/5 p-[1px] cursor-pointer transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-purple-500/10"
         >
