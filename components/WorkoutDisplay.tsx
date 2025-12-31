@@ -55,7 +55,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
         : JSON.parse(workout.description);
       
       return (
-        <div className="space-y-6">
+        <div className="space-y-1">
           {Object.entries(exercises).map(([exerciseName, details]: [string, any], index) => {
             // Parse the exercise details
             let sets = [];
@@ -67,11 +67,11 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
             }
 
             return (
-              <div key={index} className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#2a2a2a] to-[#1f1f1f] p-6 border border-[#333333] hover:border-cyan-400/30 transition-all duration-300">
+              <div key={index} className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#2a2a2a] to-[#1f1f1f] p-6 border border-[#333333] hover:border-cyan-400/30 transition-all duration-300 mb-6 last:mb-0">
                 {/* Exercise Name */}
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                  <h5 className="text-lg font-bold text-gray-100">{exerciseName}</h5>
+                <div className="flex items-center gap-3 mb-5 pb-4 border-b border-gray-700/50">
+                  <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-400 to-cyan-500 shadow-lg shadow-cyan-400/50"></div>
+                  <h5 className="text-xl font-bold text-cyan-400">{exerciseName}</h5>
                 </div>
 
                 {/* Sets Grid */}
