@@ -1,5 +1,5 @@
 export interface Workout {
-  id: number;
+  id?: number;
   workout_date: string;
   title: string;
   description: string;

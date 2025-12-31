@@ -60,6 +60,12 @@ export default function Home() {
   };
 
   const handleSelectWorkout = async (workout: Workout) => {
+    // Don't fetch if workout doesn't have an ID
+    if (!workout.id) {
+      console.warn('Cannot fetch workout details: ID is undefined');
+      return;
+    }
+    
     try {
       const res = await fetch(`/api/workouts/${workout.id}`);
       if (!res.ok) throw new Error('Failed to fetch workout details');
