@@ -55,7 +55,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
         : JSON.parse(workout.description);
       
       return (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {Object.entries(exercises).map(([exerciseName, details]: [string, any], index) => {
             // Parse the exercise details
             let sets = [];
@@ -67,23 +67,23 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
             }
 
             return (
-              <div key={index} className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#2a2a2a] to-[#1f1f1f] p-5 border border-[#333333] hover:border-cyan-400/30 transition-all duration-300">
+              <div key={index} className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#2a2a2a] to-[#1f1f1f] p-6 border border-[#333333] hover:border-cyan-400/30 transition-all duration-300">
                 {/* Exercise Name */}
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-5">
                   <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
                   <h5 className="text-lg font-bold text-gray-100">{exerciseName}</h5>
                 </div>
 
                 {/* Sets Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {sets.map((set: any, setIndex: number) => {
                     // Parse set data
                     let reps = set.reps || set['reps"'] || 'N/A';
                     let weight = set.weight_kg || set['weight_kg"'] || set.weight || 'N/A';
                     
                     return (
-                      <div key={setIndex} className="relative p-3 rounded-lg bg-[#1a1a1a]/50 border border-[#2a2a2a]">
-                        <div className="text-xs text-gray-500 mb-1">Set {setIndex + 1}</div>
+                      <div key={setIndex} className="relative p-4 rounded-lg bg-[#1a1a1a]/50 border border-[#2a2a2a]">
+                        <div className="text-xs text-gray-500 mb-2">Set {setIndex + 1}</div>
                         <div className="flex items-baseline gap-3">
                           <div className="flex items-baseline gap-1">
                             <span className="text-2xl font-bold text-cyan-400">{reps}</span>
@@ -101,8 +101,8 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
                 </div>
 
                 {/* Total Sets Badge */}
-                <div className="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20">
-                  <span className="text-xs font-medium text-red-400">{sets.length} sets</span>
+                <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20">
+                  <span className="text-xs font-medium text-cyan-400">{sets.length} sets</span>
                 </div>
               </div>
             );
@@ -121,15 +121,15 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
   return (
     <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]/90 backdrop-blur-xl p-8 border border-[#333333] animate-fade-in">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
-          <div className="p-3 rounded-xl bg-gradient-to-br from-red-600/20 to-orange-600/20">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="p-3 rounded-xl bg-gradient-to-br from-cyan-400/20 to-cyan-500/20">
             <Dumbbell className="w-8 h-8 text-cyan-400" />
           </div>
           <div>
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-orange-500 bg-clip-text text-transparent">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-500 bg-clip-text text-transparent">
               {workout.title}
             </h3>
-            <p className="text-gray-400">
+            <p className="text-gray-400 mt-1">
               {new Date(workout.workout_date).toLocaleDateString('en-US', { 
                 weekday: 'long',
                 year: 'numeric',
@@ -141,8 +141,8 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
         </div>
 
         {/* Volume Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div className="p-4 rounded-xl bg-gradient-to-br from-red-600/10 to-orange-600/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-cyan-400/10 to-cyan-500/10">
             <div className="flex items-center gap-2 mb-1">
               <TrendingUp className="w-4 h-4 text-cyan-400" />
               <p className="text-sm text-gray-400">Total Volume</p>
@@ -155,7 +155,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
 
         {/* Description */}
         <div className="p-6 rounded-xl bg-[#2a2a2a]/50">
-          <h4 className="text-lg font-semibold text-gray-200 mb-3">Exercises</h4>
+          <h4 className="text-lg font-semibold text-gray-200 mb-4">Exercises</h4>
           {renderDescription()}
         </div>
       </div>
