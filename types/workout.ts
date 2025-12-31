@@ -8,23 +8,7 @@ export interface Workout {
   created_at: string;
 }
 
-export interface DashboardStats {
-  lastWorkout: {
-    date: string;
-    title: string;
-    volume: number;
-  } | null;
-  totalWorkouts: number;
-  avgWorkoutsPerWeek: number;
-  consistencyScore: number;
-}
-
-export interface VolumeDataPoint {
-  date: string;
-  volume: number;
-}
-
-export interface FrequencyDataPoint {
+export interface WeeklyVolumeData {
   week: string;
-  count: number;
+  totalVolume: number;
 }

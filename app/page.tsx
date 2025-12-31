@@ -1,57 +1,45 @@
 'use client';
 
-import FrequencyChart from '@/components/charts/FrequencyChart';
-import VolumeChart from '@/components/charts/VolumeChart';
+import DateSelector from '@/components/DateSelector';
 import ErrorState from '@/components/ErrorState';
 import LoadingState from '@/components/LoadingState';
-import ChartCard from '@/components/ui/ChartCard';
-import StatCard from '@/components/ui/StatCard';
-import WorkoutDetail from '@/components/WorkoutDetail';
-import WorkoutList from '@/components/WorkoutList';
-import { DashboardStats, FrequencyDataPoint, VolumeDataPoint, Workout } from '@/types/workout';
-import { Activity, Calendar, Target, TrendingUp } from 'lucide-react';
+import WeeklyVolumeChart from '@/components/WeeklyVolumeChart';
+import WorkoutDisplay from '@/components/WorkoutDisplay';
+import { WeeklyVolumeData, Workout } from '@/types/workout';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-  const [stats, setStats] = useState<DashboardStats | null>(null);
-  const [volumeData, setVolumeData] = useState<VolumeDataPoint[]>([]);
-  const [frequencyData, setFrequencyData] = useState<FrequencyDataPoint[]>([]);
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const [weeklyData, setWeeklyData] = useState<WeeklyVolumeData[]>([]);
+  const [selectedDate, setSelectedDate] = useState<string>(
+    new Date().toISOString().split('T')[0]
+  );
   const [selectedWorkout, setSelectedWorkout] = useState<Workout | null>(null);
   const [loading, setLoading] = useState(true);
+  const [workoutLoading, setWorkoutLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch weekly volume data on mount
   useEffect(() => {
-    fetchAllData();
+    fetchWeeklyData();
   }, []);
 
-  const fetchAllData = async () => {
+  // Fetch workout when date changes
+  useEffect(() => {
+    if (selectedDate) {
+      fetchWorkoutByDate(selectedDate);
+    }
+  }, [selectedDate]);
+
+  const fetchWeeklyData = async () => {
     try {
       setLoading(true);
       setError(null);
 
-      const [statsRes, volumeRes, frequencyRes, workoutsRes] = await Promise.all([
-        fetch('/api/dashboard'),
-        fetch('/api/charts/volume'),
-        fetch('/api/charts/frequency'),
-        fetch('/api/workouts?limit=10'),
-      ]);
+      const res = await fetch('/api/charts/volume');
+      if (!res.ok) throw new Error('Failed to fetch weekly data');
 
-      if (!statsRes.ok || !volumeRes.ok || !frequencyRes.ok || !workoutsRes.ok) {
-        throw new Error('Failed to fetch data');
-      }
-
-      const [statsData, volumeData, frequencyData, workoutsData] = await Promise.all([
-        statsRes.json(),
-        volumeRes.json(),
-        frequencyRes.json(),
-        workoutsRes.json(),
-      ]);
-
-      setStats(statsData);
-      setVolumeData(volumeData);
-      setFrequencyData(frequencyData);
-      setWorkouts(workoutsData.workouts || []);
+      const data = await res.json();
+      setWeeklyData(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -59,15 +47,20 @@ export default function Home() {
     }
   };
 
-  const handleSelectWorkout = async (workout: Workout) => {
+  const fetchWorkoutByDate = async (date: string) => {
     try {
-      // Use workout_date as the identifier since it's the primary key
-      const res = await fetch(`/api/workouts/${encodeURIComponent(workout.workout_date)}`);
-      if (!res.ok) throw new Error('Failed to fetch workout details');
+      setWorkoutLoading(true);
+
+      const res = await fetch(`/api/workouts/by-date?date=${date}`);
+      if (!res.ok) throw new Error('Failed to fetch workout');
+
       const data = await res.json();
       setSelectedWorkout(data);
     } catch (err) {
-      console.error('Error fetching workout details:', err);
+      console.error('Error fetching workout:', err);
+      setSelectedWorkout(null);
+    } finally {
+      setWorkoutLoading(false);
     }
   };
 
@@ -85,7 +78,7 @@ export default function Home() {
     return (
       <div className="min-h-screen p-6 md:p-10">
         <div className="max-w-7xl mx-auto">
-          <ErrorState message={error} onRetry={fetchAllData} />
+          <ErrorState message={error} onRetry={fetchWeeklyData} />
         </div>
       </div>
     );
@@ -100,66 +93,25 @@ export default function Home() {
             Workout Analytics
           </h1>
           <p className="text-gray-400 text-lg">
-            Track your fitness journey and performance metrics
+            Track your training volume and progress
           </p>
         </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <StatCard
-            icon={Calendar}
-            label="Last Workout"
-            value={stats?.lastWorkout ? new Date(stats.lastWorkout.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A'}
-          />
-          <StatCard
-            icon={Activity}
-            label="Total Workouts (30d)"
-            value={stats?.totalWorkouts || 0}
-          />
-          <StatCard
-            icon={TrendingUp}
-            label="Avg Per Week"
-            value={stats?.avgWorkoutsPerWeek || 0}
-          />
-          <StatCard
-            icon={Target}
-            label="Consistency Score"
-            value={`${stats?.consistencyScore || 0}%`}
-          />
-        </div>
+        {/* Weekly Volume Chart */}
+        <WeeklyVolumeChart data={weeklyData} />
 
-        {/* Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <ChartCard title="Workout Volume Over Time">
-            <VolumeChart data={volumeData} />
-          </ChartCard>
-          <ChartCard title="Workouts Per Week">
-            <FrequencyChart data={frequencyData} />
-          </ChartCard>
-        </div>
-
-        {/* Workout History */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-cyan-500/10 p-[1px] animate-slide-up">
-          <div className="relative rounded-2xl bg-gray-900/90 backdrop-blur-xl p-6">
-            <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              Recent Workouts
-            </h2>
-            {workouts.length > 0 ? (
-              <WorkoutList workouts={workouts} onSelectWorkout={handleSelectWorkout} />
-            ) : (
-              <p className="text-gray-400 text-center py-8">No workouts found</p>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Workout Detail Modal */}
-      {selectedWorkout && (
-        <WorkoutDetail
-          workout={selectedWorkout}
-          onClose={() => setSelectedWorkout(null)}
+        {/* Date Selector */}
+        <DateSelector 
+          selectedDate={selectedDate}
+          onDateChange={setSelectedDate}
         />
-      )}
+
+        {/* Workout Display */}
+        <WorkoutDisplay 
+          workout={selectedWorkout}
+          isLoading={workoutLoading}
+        />
+      </div>
     </div>
   );
 }
