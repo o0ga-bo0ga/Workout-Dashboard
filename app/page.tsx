@@ -89,7 +89,7 @@ export default function Home() {
       <div className="w-full max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 via-orange-500 to-orange-400 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
             Workout Analytics
           </h1>
           <p className="text-gray-400 text-lg">
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
 
           {/* Right Column - Date Selector & Workout Display */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <DateSelector 
               selectedDate={selectedDate}
               onDateChange={setSelectedDate}

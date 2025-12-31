@@ -70,7 +70,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
               <div key={index} className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-[#2a2a2a] to-[#1f1f1f] p-5 border border-[#333333] hover:border-red-500/30 transition-all duration-300">
                 {/* Exercise Name */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500"></div>
+                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
                   <h5 className="text-lg font-bold text-gray-100">{exerciseName}</h5>
                 </div>
 
@@ -91,7 +91,7 @@ export default function WorkoutDisplay({ workout, isLoading }: WorkoutDisplayPro
                           </div>
                           <div className="text-gray-600">×</div>
                           <div className="flex items-baseline gap-1">
-                            <span className="text-2xl font-bold text-orange-500">{weight}</span>
+                            <span className="text-2xl font-bold text-gray-100">{weight}</span>
                             <span className="text-xs text-gray-400">kg</span>
                           </div>
                         </div>

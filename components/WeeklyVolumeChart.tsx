@@ -10,7 +10,7 @@ interface WeeklyVolumeChartProps {
 export default function WeeklyVolumeChart({ data }: WeeklyVolumeChartProps) {
   return (
     <div className="relative overflow-hidden rounded-2xl bg-[#1a1a1a]/90 backdrop-blur-xl p-6 border border-[#333333] animate-slide-up">
-      <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+      <h2 className="text-2xl font-bold mb-6 bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
           Weekly Volume Trend
         </h2>
         <div className="w-full h-[400px]">
