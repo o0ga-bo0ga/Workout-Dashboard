@@ -35,7 +35,7 @@ export default function WeeklyVolumeChart({ data }: WeeklyVolumeChartProps) {
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: 'rgba(17, 24, 39, 0.95)',
+                  backgroundColor: 'rgba(30, 30, 30, 0.95)',
                   border: '1px solid rgba(239, 68, 68, 0.3)',
                   borderRadius: '12px',
                   backdropFilter: 'blur(10px)',
