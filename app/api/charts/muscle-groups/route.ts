@@ -53,53 +53,30 @@ export async function GET(request: Request) {
       return 'Shoulders';
     }
     
-    // Biceps exercises
+    // Arms exercises (Biceps, Triceps, Forearms)
     if (name.includes('bicep curl') || name.includes('biceps curl') || 
         name.includes('barbell curl') || name.includes('dumbbell curl') ||
         name.includes('hammer curl') || name.includes('preacher curl') ||
-        name.includes('concentration curl') || name.includes('cable curl')) {
-      return 'Biceps';
-    }
-    
-    // Triceps exercises
-    if (name.includes('tricep') || name.includes('skull crusher') ||
+        name.includes('concentration curl') || name.includes('cable curl') ||
+        name.includes('tricep') || name.includes('skull crusher') ||
         name.includes('close grip') || name.includes('close-grip') ||
         name.includes('pushdown') || name.includes('overhead extension') ||
-        name.includes('tricep dip')) {
-      return 'Triceps';
+        name.includes('tricep dip') || name.includes('wrist curl') || 
+        name.includes('reverse curl') || name.includes('farmer') || name.includes('grip')) {
+      return 'Arms';
     }
     
-    // Forearms exercises
-    if (name.includes('wrist curl') || name.includes('reverse curl') ||
-        name.includes('farmer') || name.includes('grip')) {
-      return 'Forearms';
-    }
-    
-    // Quadriceps exercises
+    // Legs exercises (Quadriceps, Hamstrings, Calves, Glutes)
     if (name.includes('squat') || name.includes('leg press') ||
         name.includes('leg extension') || name.includes('lunge') ||
-        name.includes('bulgarian split')) {
-      return 'Quadriceps';
-    }
-    
-    // Hamstrings exercises
-    if (name.includes('leg curl') || name.includes('romanian deadlift') ||
-        name.includes('rdl') || name.includes('good morning') ||
-        name.includes('nordic curl')) {
-      return 'Hamstrings';
-    }
-    
-    // Calves exercises
-    if (name.includes('calf raise') || name.includes('calf') ||
-        name.includes('donkey calf')) {
-      return 'Calves';
-    }
-    
-    // Glutes exercises
-    if (name.includes('hip thrust') || name.includes('glute bridge') ||
-        name.includes('kickback') || name.includes('sumo deadlift') ||
-        name.includes('glute')) {
-      return 'Glutes';
+        name.includes('bulgarian split') || name.includes('leg curl') || 
+        name.includes('romanian deadlift') || name.includes('rdl') || 
+        name.includes('good morning') || name.includes('nordic curl') ||
+        name.includes('calf raise') || name.includes('calf') ||
+        name.includes('donkey calf') || name.includes('hip thrust') || 
+        name.includes('glute bridge') || name.includes('kickback') || 
+        name.includes('sumo deadlift') || name.includes('glute')) {
+      return 'Legs';
     }
     
     // Abs/Core exercises
@@ -110,30 +87,17 @@ export async function GET(request: Request) {
       return 'Abs';
     }
     
-    // Cardio exercises
-    if (name.includes('run') || name.includes('cycle') || name.includes('bike') ||
-        name.includes('row machine') || name.includes('elliptical') ||
-        name.includes('jump rope') || name.includes('cardio')) {
-      return 'Cardio';
-    }
-    
     return 'Other';
   };
 
-  // Aggregate volume by muscle group (using all Lyfta categories)
+  // Aggregate volume by muscle group (6 main categories)
   const muscleGroupVolumes: { [key: string]: number } = {
     'Chest': 0,
     'Back': 0,
     'Shoulders': 0,
-    'Biceps': 0,
-    'Triceps': 0,
-    'Forearms': 0,
-    'Quadriceps': 0,
-    'Hamstrings': 0,
-    'Calves': 0,
-    'Glutes': 0,
+    'Arms': 0,
+    'Legs': 0,
     'Abs': 0,
-    'Cardio': 0,
   };
 
   (data || []).forEach((workout: any) => {
