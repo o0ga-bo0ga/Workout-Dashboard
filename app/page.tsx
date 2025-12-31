@@ -3,6 +3,7 @@
 import DateSelector from '@/components/DateSelector';
 import ErrorState from '@/components/ErrorState';
 import LoadingState from '@/components/LoadingState';
+import MuscleGroupChart from '@/components/MuscleGroupChart';
 import WeeklyVolumeChart from '@/components/WeeklyVolumeChart';
 import WorkoutDisplay from '@/components/WorkoutDisplay';
 import { WeeklyVolumeData, Workout } from '@/types/workout';

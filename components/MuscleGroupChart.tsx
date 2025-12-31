@@ -108,7 +108,7 @@ export default function MuscleGroupChart() {
                 cx="50%"
                 cy="50%"
                 outerRadius={120}
-                label={({ muscleGroup, percentage }) => `${muscleGroup} (${percentage}%)`}
+                label={(entry: any) => `${entry.muscleGroup} (${entry.percentage}%)`}
                 labelLine={{ stroke: '#9ca3af', strokeWidth: 1 }}
               >
                 {data.map((entry, index) => (
@@ -124,7 +124,7 @@ export default function MuscleGroupChart() {
                 }}
                 labelStyle={{ color: '#e5e7eb' }}
                 itemStyle={{ color: '#22d3ee' }}
-                formatter={(value: number) => [`${value.toLocaleString()} kg`, 'Volume']}
+                formatter={(value: any) => [`${value.toLocaleString()} kg`, 'Volume']}
               />
               <Legend
                 verticalAlign="bottom"

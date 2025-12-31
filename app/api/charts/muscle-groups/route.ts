@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -12,8 +12,6 @@ export async function GET(request: Request) {
       { status: 400 }
     );
   }
-
-  const supabase = createClient();
 
   // Fetch workouts in date range
   const { data, error } = await supabase
@@ -63,7 +61,7 @@ export async function GET(request: Request) {
     'Abs': 0,
   };
 
-  (data || []).forEach(workout => {
+  (data || []).forEach((workout: any) => {
     if (!workout.description) return;
 
     try {
